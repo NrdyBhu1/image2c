@@ -29,16 +29,17 @@ int main(int argc, char *argv[])
     shift(&argc, &argv);        // skip program name
 
     if (argc <= 0) {
-        fprintf(stderr, "Usage: ./png2c <filepath.png>\n");
+        fprintf(stderr, "Usage: ./png2c <filepath.png> <header_name>\n");
         fprintf(stderr, "ERROR: expected file path\n");
         exit(1);
     }
 
     char *filepath = shift(&argc, &argv);
+    char *header_name = shift(&argc, &argv);
 
     int x, y, n;
     uint32_t *data = (uint32_t *)stbi_load(filepath, &x, &y, &n, 4);
-    toUpper(filepath);
+    toUpper(header_name);
 
     if (data == NULL) {
         fprintf(stderr, "Could not load file `%s`\n", filepath);
@@ -46,16 +47,16 @@ int main(int argc, char *argv[])
     }
 
     // TODO: inclusion guards and the array name are not customizable
-    printf("#ifndef %s_H_\n", filepath);
-    printf("#define %s_H_\n", filepath);
-    printf("size_t %s_WIDTH = %d;\n", filepath, x);
-    printf("size_t %s_HEIGHT = %d;\n", filepath, y);
-    printf("uint32_t %s[] = {", filepath);
+    printf("#ifndef %s_H_\n", header_name);
+    printf("#define %s_H_\n", header_name);
+    printf("size_t %s_WIDTH = %d;\n", header_name, x);
+    printf("size_t %s_HEIGHT = %d;\n", header_name, y);
+    printf("uint32_t %s[] = {", header_name);
     for (size_t i = 0; i < (size_t)(x * y); ++i) {
         printf("0x%x, ", data[i]);
     }
     printf("};\n");
-    printf("#endif // %s_H_\n", filepath);
+    printf("#endif // %s_H_\n", header_name);
 
     return 0;
 }
