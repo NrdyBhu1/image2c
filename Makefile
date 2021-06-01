@@ -6,8 +6,8 @@ else
 	MINGCC  ?= x86_64-w64-mingw32-gcc
 endif
 
-CFLAGS		?=-Wall -Wextra -ggdb -std=c99
-OBJ			?=png2c
+CFLAGS		?= -Wall -Wextra -ggdb -std=c99
+OBJ			?= bin/png2c
 
 all install: debug
 
@@ -15,8 +15,8 @@ debug: linux
 
 release: linux windows
 	
-linux: $(wildcard *.c)
-	$(CC) $(CFLAGS) png2c.c -lm -o $(OBJ)
+linux: $(wildcard src/*.c) $(wildcard src/*.h)
+	$(CC) $(CFLAGS) src/png2c.c -lm -o $(OBJ)
 
-windows: $(wildcard *.c)
-	$(MINGCC) $(CFLAGS) png2c.c -lm -o $(OBJ)
+windows: $(wildcard src/*.c) $(wildcard src/*.h)
+	$(MINGCC) $(CFLAGS) src/png2c.c -lm -o $(OBJ)

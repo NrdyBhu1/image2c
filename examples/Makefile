@@ -1,4 +1,8 @@
-CC=../png2c
+ifdef OS
+	CC		?= ../bin/png2c.exe
+else
+	CC		?= ../bin/png2c
+endif
 
 all install: wallpaper1 wallpaper2
 
