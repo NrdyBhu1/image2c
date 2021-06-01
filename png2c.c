@@ -294,19 +294,6 @@ void textAppend(char *text, const char *append, int *position)
     *position += textLength(append);
 }
 
-// Find first text occurrence within a string
-// REQUIRES: strstr()
-static int textFindIndex(const char *text, const char *find)
-{
-    int position = -1;
-
-    char *ptr = strstr(text, find);
-
-    if (ptr != NULL) position = (int)(ptr - text);
-
-    return position;
-}
-
 // Get upper case version of provided string
 // REQUIRES: toupper()
 const char *textToUpper(const char *text)
@@ -395,6 +382,20 @@ char *textToUtf8(int *codepoints, int length)
 
     return text;
 }
+
+// Find first text occurrence within a string
+// REQUIRES: strstr()
+int textFindIndex(const char *text, const char *find)
+{
+    int position = -1;
+
+    char *ptr = strstr(text, find);
+
+    if (ptr != NULL) position = (int)(ptr - text);
+
+    return position;
+}
+
 
 #endif
 
