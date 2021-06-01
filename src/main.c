@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
     shift(&argc, &argv);        // skip program name
 
     if (argc <= 0) {
-        fprintf(stderr, "Usage: ./png2c <filepath.png> <header_name>\n");
+        fprintf(stderr, "Usage: ./image2c <filepath.png> <header_name>\n");
         fprintf(stderr, "ERROR: expected file path\n");
         exit(1);
     }

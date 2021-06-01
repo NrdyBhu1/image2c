@@ -7,7 +7,7 @@ else
 endif
 
 CFLAGS		?= -Wall -Wextra -ggdb -std=c99
-OBJ			?= bin/png2c
+OBJ			?= bin/image2c
 
 all install: debug
 

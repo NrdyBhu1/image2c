@@ -1,7 +1,7 @@
 ifdef OS
-	CC		?= ../bin/png2c.exe
+	CC		?= ../bin/image2c.exe
 else
-	CC		?= ../bin/png2c
+	CC		?= ../bin/image2c
 endif
 
 all install: wallpaper1 wallpaper2
