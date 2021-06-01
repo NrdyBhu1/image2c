@@ -16,7 +16,7 @@ debug: linux
 release: linux windows
 	
 linux: $(wildcard src/*.c) $(wildcard src/*.h)
-	$(CC) $(CFLAGS) src/png2c.c -lm -o $(OBJ)
+	$(CC) $(CFLAGS) src/main.c -lm -o $(OBJ)
 
 windows: $(wildcard src/*.c) $(wildcard src/*.h)
-	$(MINGCC) $(CFLAGS) src/png2c.c -lm -o $(OBJ)
+	$(MINGCC) $(CFLAGS) src/main.c -lm -o $(OBJ)
