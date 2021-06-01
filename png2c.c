@@ -31,6 +31,13 @@ int main(int argc, char *argv[])
     int x, y, n;
     uint32_t *data = (uint32_t *)stbi_load(filepath, &x, &y, &n, 4);
     char* header_name = NULL;
+
+    if (TextFindIndex(filepath, "/") != -1) {
+        int file_path_array_len = 0;
+        const char* *file_path_array = TextSplit(filepath, '/', &file_path_array_len);
+        filepath = (char*)file_path_array[file_path_array_len-1];
+    }
+    
     if (TextFindIndex(filepath, ".png") != -1) {
         header_name = TextReplace(filepath, ".png", "");
     }
@@ -38,6 +45,8 @@ int main(int argc, char *argv[])
     if (TextFindIndex(filepath, ".jpg") != -1) {
         header_name = TextReplace(filepath, ".jpg", "");
     }
+
+    header_name = (char*)TextToUpper(header_name);
 
     if (data == NULL) {
         fprintf(stderr, "Could not load file `%s`\n", filepath);
