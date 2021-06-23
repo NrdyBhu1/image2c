@@ -65,5 +65,7 @@ int main(int argc, char *argv[])
     printf("};\n");
     printf("#endif // %s_H_\n", header_name);
 
+    stbi_image_free(data);
+
     return 0;
 }
